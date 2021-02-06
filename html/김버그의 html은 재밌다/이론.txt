@@ -1,0 +1,497 @@
+<p attr="속성">태그</p>
+사람의 눈에 맞는 형태로 쓴다기보단 글이 어떤 성격을 가지고 있는지
+확실하게 표시해주고 브라우저가 명확하게 분류해줄 수 있도록 작성하는게 맞다.
+
+1.제목과 문단
+
+heading 제목 ->중요도에 따라 크기를 설정함 (대주제.소주제..)
+<h1></h1>		
+<h2></h2>
+<h3></h3>
+<h4></h4>
+<h5></h5>
+<h6></h6>
+중요도를 어떻게 나눠야할지 기준부터 고민하기 보다는
+핵심이 되는 내용, 주제, 제목에 heading을 사용한다고 접근한다.
+그리고 중요도에 따라 크기를 설정할 때는 같은 레벨의 중요도끼리는 같은 크기를 사용한다.
+마지막으로 태그를 작성할 때 태그와 태그 사이에는 들여쓰기를 한번 한다
+<h1>
+..
+</h1>
+
+<p>
+...
+</p>
+
+이런 식으로 h1과 p사이에 들여쓰기
+h1과 p같은 곳에 있는 문장은 처음은 띄어쓰기를 한다.
+
+paragraph 본문
+<p></p>
+본문을 감싼다. 본문 전체를 하나로 감싸는건 아니고 하나의 글이라도 문단마다 다르게 표시하고 싶으면 p태그를 사용한다.
+
+2. Emphasis 강조
+1)<em>강조</em>
+2)<strong>강조</strong>
+둘의 차이->상관없으니까 끌리는거 쓰기
+강조하는 태그는 들여쓰기 없이 바로 앞에 open을 해서 <em>로 쓰고
+마지막에 닫는 태그에서만
+본문1 <em>본문2
+</em>
+</p>
+이렇게 사용한다.
+
+3.Anchor 링크 (레퍼런스는 주소값이라는 뜻으로도 많이 사용함)
+<a href="주소">링크</a>
+저 속성을 쓸 때 href = ""이런 식으로 띄어쓰기 안한다.
+바로 붙여서 href=""으로 붙여서 쓴다.
+
+href값 작성하는 방법
+1.웹 URL을 그대로 가져다 붙임 (절대,상대 모두 가능) "http://www.~~"
+2.페이지 내 이동
+id값을 이용해서 같은 페이지 내에 다른 부분으로 점프한다(주석처리 같은 느낌?)
+다른 곳에 id="hello"라고 주고 href="#hello"를 하면 hello가 id값인 곳으로 이동한다.
+3.메일쓰기
+href="mailto:메일주소" 를 속성으로 주면 입력한 메일주소로 메일을 보내는 창이 뜬다.
+href="mailto:y_rzzz@naver.com"
+4.전화번호
+<a href="tel:전화번호"></a>
+
+*target="링크될 페이지 설명" a에서 사용하는 속성
+예제에서 꼭 형태가 제목같이 생겼다고 해도 그냥 꾸며주는 말일 수 있으니까 강조하는 표시 정도로만 하는 경우도 있다.
+그럴 때는 strong! 마크업에는 정답이 없지만 그래도 나름대로 기준을 가지고 생각해본다.
+
+가장 먼저 홈페이지 구성의 덩어리를 나눈다.
+
+4.img
+<img src="이미지 주소" alt="대체 텍스트"/>
+alt -> 사용자한테 이미지가 안보여질 떄 다짜고짜 엑박을 보여주기보단 뭐라도 정보를 던져주기 위해 사진에 대한 설명을 한다고 생각한다.
+시각장애인에게도 그림을 못보니 스크린 리더를 이용해 대체 텍스트를 읽는 서비스를 제공하고 있다.
+alt는 취향껏 쓰는건데 적당히 간단하게 설명한다.
+사진 이미지는 images라는 폴더에 넣어서 보관한다.
+
+5.List 목록
+<ul>
+  <li>항목</li>
+  <li>항목</li>
+</ul>
+
+<ul>:순서가 안중요 <ol>:순서가 중요한 경우에 사용(요리법이나 실시간 검색어 같은 것)
+ul이나 ol안에 들어있는 자식요소(간단하게 말하면 ul,ol안에 들어있는 태그)는
+li만 가능하다. div나 p같은 태그는 안에 넣으면 안된다.
+<ul>
+  <p><li>항목</li>
+  <li>항목</li></p>
+</ul>
+이런식으로 작성하는게 틀렸다는 의미이다. 웹표준에 어긋났다.
+
+실제 실시간 검색어를 만들 때는 클릭하면 검색어를 검색해주는 링크로 이동한다.
+그리고 ul이나 ol의 직계 자식 요소는 li만 가능하기 때문에
+<ul>
+  <a>
+    <li>내용<li>
+   </a>
+</ul>
+
+이렇게 쓰는게 아니라
+<ul>
+    <li>
+       <a>내용</a>
+   </li>
+</ul>
+이렇게 li의 내부에 a태그를 넣는다. 어떤 태그든 li내부에 넣고 싶은 태그를 넣는게 맞다.
+
+6. 정의목록 description list -> 생각보다 유용하다.
+1.용어를 정의할 때 사용한다.
+2.key-value로 정보를 제공할 때
+dl : 뭔가를 설명하기 전에 가장 크게 묶어준다..
+dt : 용어. description term ->사전적으로 구체적인 정리를 하고 싶을 때는 
+<dt>
+  <dfn>정의</dfn>
+</dt>
+dd: 설명. descrription data
+
+좋은 예시
+<dl>
+  <dt>학습</dt>
+  <dd>
+     배워서 익히는 일.
+  </dd>
+  <dd>
+     변화,발전하는 일.
+  </dd>
+</dl>
+:한가지 용어에 대한 두가지 설명
+
+<dl>
+  <dt>학습</dt>
+  <dd>
+     변화,발전하는 일.
+  </dd>
+</dl>
+:한가지 용어에 대한 한가지 설명
+
+<dl>
+  <dt>학습</dt>
+  <dt>공부</dt>
+  <dd>
+     변화,발전하는 일.
+  </dd>
+</dl>
+:두개의 비슷한 용어에 대한 한가지 동일한 설명
+
+<dl>
+  <dt>학습</dt>
+  <dt>공부</dt>
+  <dd>
+     배워서 익히는 일.
+  </dd>
+  <dd>
+     변화,발전하는 일.
+  </dd>
+</dl>
+:두개의 비슷한 용어에 대한 두가지 설명
+
+<dl>
+  <div>
+    <dt>사과</dt>
+    <dd>사과에 대한 설명</dd>
+  </div>
+  <div>
+    <dt>바나나</dt>
+    <dd>바나나에 대한 설명</dd>
+   </div>
+</dl>
+:약간 특이한 예시, dt랑 dd만 dl안에 있는 것은 아니고 한개의 용어에 대한 설명을
+세트로 묶어 버릴 수 있다.
+
+나쁜 예시
+<dl>
+  <dt>학습</dt>
+  <dd>
+     변화,발전하는 일.
+  </dd>
+ <dt>사과</dt>
+</dl>
+:용어에 대한 설명이 사과는 따라오지 않는다 -> dl을 쓸거면 용어에 대한 설명은 반드시 와야한다는 뜻
+
+<dl>
+  <section>
+    <dt>사과</dt>
+    <dd>사과에 대한 설명</dd>
+  </section>
+</dl>
+:section이라는 태그로 묶으면 안된다. dl에 직계 자식으로 둘 수 있는 태그는 오직
+div,dd,dt밖에 없다.
+
+dl이라는 태그 없이 dt,dd만 밖에 덜렁 내보내면 안된다.
+
+7. 인용 Quotations ->브라우저에게 인용한 문장이라는 것을 알려줌.
+1. <blockquote>블락 전체가 인용 내용:예를 들면 명언같은거</blockquote>
+-출처 표기는 <cite>출처</cite> -><blockquote> </blockquote>이 내부에 넣는다.
+<blockquote cite="cite라는 속성은 있다면 이 글을 인용해온 사이트 주소를 넣는 곳">
+  우리가 겪을 수 있는 가장 아름다운 체험은 신비다.<br />
+  신비는 모든 참 예술과 과학의 근원이다.
+  <cite>알버트 아인슈타인</cite>
+</blockquote>
+ 블록은 그냥 문단 전체 덩어리가 인용문이다.
+
+2. <q>
+문단 내에 한 문장같이 일부분만 인용문일 때 사용한다.
+p태그 안에 포함되게 q태그를 써야하고 쓰면 큰 따옴표가 생성된다.
+맨 아래에 출처를 표기할 때는 q 밖에서도 cite를 사용한다.
+예시는 block quote로 묶어서 가능한지도 모르겠다..
+<blockquote cite="https://bit.ly/2mvSYrT">
+  <p>
+    The study is the first to project the long-term outlook for Antarctica's
+    largest penguins, which can grow 1.2 meters (four ft) tall, seeking to fill a
+    gap in understanding climate change and wildlife in one of the remotest parts
+    of the planet.
+  </p>
+  <p>
+    Overall, numbers were set to fall by at least 19 percent from current levels
+    by 2100 as sea ice melts. And two-thirds of colonies of the birds, which have
+    distinctive golden head patches, would decline by more than half, it said.
+  </p>
+  <q>It's not happy news for the emperor penguin</q> said Hal Castellan of the U.S.
+    Woods Hole Oceanographic Institution, a co-author of the study in the journal
+    Nature Climate Change.
+  </p>
+  <cite>“Emperor Penguin Population to Slide Due to Climate Change”, Scientific
+    American, June 29, 2014, https://bit.ly/2mvSYrT</cite>
+</blockquote>
+블록쿼터 안에 q가 들어있을 수 있다. 이 전체 문장이 어쨌든 다른 사이트에서 긁어온 글이라서
+블록쿼터로 묶었고 맨 아래 사이트는 출처라서 cite로 표시하고 속성 cite는 url만 따로 긁어서 블록쿼터 태그 안에 속성으로 넣어주었다.
+
+8. div와 span 약간 흑마법->css를 할 때 요소를 묶어야할 때 사용함.
+div는 오만 곳에 그냥 다 쓰고
+span은 문장 내부에 작은 부분을 꾸며주고 싶을 때 사용한다.
+가능하면 정말 뭐로 묶을지 태그 생각안날 때 사용하는 정도로만 사용한다.
+별로 가독성이 안좋아져서 그렇다고 어디서 봤음.
+
+9. form ->사용자들한테서 입력을 받고 싶을 때 사용한다.
+<form action="입력받은 값을 처리할 능력이 있는 url으로 연결" method=""></form>
+action에 넣을 url은 백엔드 개발자가 넣어줄것^^
+method는 get|post 둘중에 적을 수 있다. 이것도 서버랑 연결된 내용이다.
+정보의 양이 너무 많으면 post고 일반적으로는 get을 사용한다.
+
+10.input
+<form>
+  <input type=""/>
+</form>
+1. type이라는 속성을 반드시 입력한다.
+
+2.입력할 내용에 대해서 설명하고 싶을 때 입력창에 기본으로 써져있는 글씨
+placeholder="내용을 입력하세요."
+
+3.글자수 제한을 걸고 싶을 때 13자 제한이라면, 속성으로
+maxlength="13"
+->13자까지만 입력된다.
+최소 글자수가 5자 이상이어야 한다면 minlength="5"
+
+4.required
+반드시 입력해야하는 항목에는 required를 사용한다 값을 정해줄 필요는 없고 그냥
+required만 속성으로 입력하면 된다.
+
+5.disabled
+사용자가 입력하기 못하게 막아둠
+
+6.value
+value="기본값"
+placeholder는 메시지정도의 기능인데 vlaue는 복사가 가능한 텍스트에 기본으로 설정된 값이다.
+
+1)type -> 한줄정도 되는 앵간한 텍스트 전부다
+2)email -> 텍스트랑 다를건 없지만 이게 이메일 주소인지 아닌지 유효성 검사를 서버로 넘어가기 전에 미리 해주는 효율적인 놈이다.
+3)password
+4)url
+5)number -> number일 때는 min max로 입력하는 값의 범위를 제한한다. (이상이하) minlength와 구분한다.
+6)file -> 파일을 첨부할 수 있는 창을 띄운다. 여기서는 palceholder가 따로 안보임 허용할 파일 확장자는 accept=".png,.jpg"처럼 .확장자1,.확장자2 이렇게 한다.
+타입 종류를 다 외우기보다는 이런게 있었는데? 하는 정도로 나중에 찾을 수 있게까지만 기억한다.
+
+11.label
+폼 양식에 이름을 붙여주는 태그, 어떤 양식에 이름을 붙여줄지 모르기 때문에 for를 사용
+<label for="인풋id">라벨</label>
+<input id="인풋id type="text"/>
+단, 라벨에서 인풋 아이디는 샵을 쓰지 않고 그냥 아이디 그대로 적어준다.
+저 인풋id만 입력하거나 라벨빼먹지 말고 두개 다 써준다. 헷갈릴 수 있음.
+
+12.radio&check box ->자주 씀
+radio : 여러가지중에 단 한개만 선택가능
+check box :여러가지중에 여러가지 고르기 가능
+<input type="radio"/>
+
+<input type="radio" name="구독" value="구독" id="구독중" />
+<label for="구독중">구독중</label>
+<input type="radio" name="구독" value="미구독" id="미구독" />
+<label for="미구독">미구독</label>
+라벨을 붙여야 어떤거에 대한 라디오인지 알 수 있다.
+그리고 name으로 하나의 카데고리인걸 명시해줘야 여러개중에 하나만 체크된다.
+카데고리 하나하나마다 라디오를 타입으로 놔줘야한다.
+그리고 결과를 전송하면 url이 name이 포함된 주소로 바뀌게 되는데, 이는 name이 이런 값을 가지는 라디오중에 어떤걸 선택했다는 정보를 전송하기 때문이다.
+마지막으로 value는 설정을 안하면 미구독과 구독의 name이 같아서 서버에서 뭘 선택한건지 혼란이 온다(라디오를 선택했다는건 알았지만..)
+그래서 value는 그 같은 name의 인풋중에 어떤 값을 골랐는지 구분해주기위해서 사용한다.
+url에서 구독=구독 구독=미구독 처럼 name=value형태로 나타나게 된다.
+
+name이 다른 항목들끼리는 서로 상관이 없다는 걸을 이용해서 설문조사같은것을 만든다고 생각하자
+
+<input type="checkbox" name="웃음소리" id="랄라" value="1"/>
+<label for="랄라">랄라</label>
+<input type="checkbox" name="웃음소리" id="룰루" value="2"/>
+<label for="룰루">룰루</label>
+<input type="checkbox" name="웃음소리" id="롤로" value="3"/>
+<label for="롤로">롤로</label>
+
+체크박스는 그냥 라디오랑 같은 맥락인건 맞다.
+서버로 보내지는 url은 웃음소리=랄라&웃음소리=룰루&웃음소리=롤로
+이렇게 체크한 모든 것을 다 표현한다.
+
+13. select&option
+      <label for="바보">바보</label>
+      <select id="바보" name="랄라">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+select값에 name속성을 달아주면 어차피 옵션이 자식으로 들어가있어서 묶인다.
+위와 같은 맥락이다.
+value는 각각 선택한 값이 어떤 의미인지 value를 써준다 역시 동일한 의미
+<select multiple id="바보" name="랄라"> 셀렉트 사이에 multiple을 넣으면 선택창이 쭉 늘어나고 컨트롤 누르고 여러개 누르면 중복체크하고 제출 가능
+
+14.Textarea->여러줄에 걸쳐서 많은 글을 받을 때 사용한다. 자소서 닉김
+<textarea></textarea>
+<textarea rows="40" cols="50"></textarea> -> 가로 40칸 세로 50칸을 한번에 써도 다 보이게 창을 키우는 역할, 하지만 css로 조정 가능함
+maxlength가 아니라 자바스크립트로 글자수를 제한한다.
+
+15.button
+<button type="button">버튼</button>
+타입에는 button/submit/reset
+별 다른 기능을 생각하지 않았을 땐 그냥 button을 사용한다.
+혹시 특정 기능을 생각했으면 나머지 두개를 사용한다. 
+submit은 양식을 제출할 때 사용한다.
+작성했던 폼을 다시 쓰고 싶으면 리셋을 이용한다. ->리셋은 사실 사용빈도가 매우매우 떨어진다.
+
+16.table->작성할 때 복잡하다는 것은 기억한다..자주 사용하니까 기억하다
+데이터를 넣은 표를 만들 때 사용한다.
+
+<table>
+  <tr>
+    <th>테이블 헤더</th> //볼드체로 나타남
+    <td>테이블 데이터</td> //일반체로 나타남
+  </tr>
+</table>
+위에를 치면 결과가 테이블 헤더 테이블 데이터 이렇게 가로로 일렬로 나온다.
+<tr>에 들어있는 자식들끼리는 같은 줄에 배치된다.
+맨 처음에 선언했던 th에 항목 수와 순서를 지켜서 td에 데이터를 입력한다.
+혹여나 th가 4개고 중간 항목에 적을 값이 없어도 td는 th개수만큼 만들고 적을 값이 없는 곳에는 아무것도 적지 않고 꼴을 맞춰준다.
+
+안해도 되지만 추천하는 것
+    <table>
+      <thead>
+        <tr>
+          <th>김예림</th>
+          <th>김예원</th>
+          <th>김혜원</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>100점</td>
+        <td>0점</td>
+        <td>50점</td>
+      </tr>
+     <tr>
+        <td>100점</td>
+        <td>0점</td>
+        <td>50점</td>
+      </tr>
+     <tr>
+        <td>100점</td>
+        <td>0점</td>
+        <td>50점</td>
+      </tr>
+     <tr>
+        <td>100점</td>
+        <td>0점</td>
+        <td>50점</td>
+      </tr>
+      </tbody>
+      <tfoot>
+        <td></td>
+        <td></td>
+        <td>총계:100점</td>
+      </tfoot>
+  </table>
+
+헤드를 쓰는 부분은 아예 tr밖에서 thead로 감싸준다. 그럼 좀 더 브라우저에게 명시적으로 보여줄 수 있다.
+아래 항목들은 무한히 길어질 수 있으니까 테이블의 내용이라는 뜻에서 tbody를 사용해본다.
+tfoot은 결론을 내릴 때 사용한다. 결론, 총계 등 마무리의 요소가 강한 부분에서 사용
+
+시간표같은거 작성할 때 셀은 자치하지만 아무것도 없는 월화수목금에서 월 왼쪽은 그냥 비워두는걸로 만든다.
+맨 왼쪽이 헤드여도 그냥 tbody안에 넣기(시간표같은거)
+
+시간이 길어져서 아래 칸과 합쳐서 셀을 만들 때는 rowspan이다.
+<td rowspan="2">왕초보 HTML &amp; CSS</td>
+rowspan은 입력한 칸수만큼 아래줄을 잡아먹었기 때문에 입력을 생략한다.
+명시를 안해주는 칸은 그냥 써놓고 주석처리가 나은건가??
+내 입장에서는 그게 보기가 편해서 주석처리를 하는걸로 하겠음!
+
+위아래 셀병합은 rowspan 옆쪽 셀병합은 colspan
+scope="row|col"
+<th scope="col">월</th>
+          <th scope="col">화</th>
+          <th scope="col">수</th>
+          <th scope="col">목</th>
+          <th scope="col">금</th>
+열에 대한 제목이면 scope="col"을 사용한다.
+<th scope="row">1교시</th>
+행에 대한 제목이면 scope="row"를 사용한다.
+특별히 어떤 기능이 추가되는건 아니고 브라우저한테 좀 더 정확히 명시해주는 것이다.
+
+17.미디어 파일
+음성 파일 -> <audio src=""></audio>
+<audio
+      src="C:\Users\HANSUNG\Desktop\web\portfolio-cafe\assets\audios\kimbug.mp3"
+      alit="kimbug.mp3"
+      controls  -->얜 그냥 음량이나 구간이나 그런걸 조정하고 싶으면 딱 이 글자만 넣고 끝낸다
+    ></audio>
+
+controls를 안썼으면 아무것도 없다.
+
+#그외
+autoplay ->재생버튼이나 그런게 보이진 않는데 자동으로 백그라운드에서 재생된다. 한번만 실행된다.
+loop autoplay ->반복재생
+
+브라우저에 따라서 특정 확장자 파일은 지원하지 않는 경우가 있다. wav는 인익은 안되는거처럼
+그래서 여러가지 버전으로 파일을 올려놓고 이중에 지원되는걸 골라서 쓰라는 식으로 코드를 작성할 수 있다.
+    <audio controls> -->컨트롤이나 오토플레이 같은 것은 여기에 옮겨쓰고
+      <source src="C:\Users\HANSUNG\Desktop\web\portfolio-cafe\assets\audios\kimbug.mp3"
+      alit="kimbug.mp3" type="audio/mp3" />
+      <source src="C:\Users\HANSUNG\Desktop\web\portfolio-cafe\assets\audios\kimbug.mp3"
+      alit="kimbug.wav" type="audio/wav" />
+      <source src="C:\Users\HANSUNG\Desktop\web\portfolio-cafe\assets\audios\kimbug.mp3"
+      alit="kimbug.ogg" type="audio/ogg" />
+<p>
+이중에 어떤 버전의 파일도 사용할 수 없다면 이 문구가 화면에 출력된다.
+</p>
+    </audio>
+
+vedio는 audio랑 똑같다. 
+
+<iframe></iframe> ->코드로 직접 작성해서 많이 쓴다기보다는 그냥 html문서 안에 또다른 html문서를 넣어서 동시에 보여주고 싶을 때 사용한다.
+
+18.안배웠던 것중에 쓸만한거
+
+<abbr title="풀네임">약어</abbr> :약자 약어를 표현할 때 사용함, 약자에 마우스를 올려놓으면 풀네임이 나온다.
+
+<address>연락처</address> : address는 주소를 나타내는 대괄호같은거고 내부에 <a tel=""></a>이런게 들어갈 수 있다.
+연락망은 물리적 주소,url,이메일,전화번호,sns연결링크 이런것
+
+<code></code> :코드안에 코드를 표현하고 싶을 때
+<pre></pre> : 태그 내부에 작성한 그대로 화면에 출력한다.
+예를 들면 안녕
+             나야 라고 하면 p태그에서는 들여쓰기가 띄어쓰기로 바뀌지만 pre에서는 들여쓰기가 된다.
+코드의 특성상 모양을 유지하고 싶어서 pre태그 안에 code태그를 넣는다.
+
+br/ -> 줄바꿈
+hr -> 수평선그리기 그냥 코드 쓰다가 수평선 그리기 하고 싶을 때 동떨어진 곳에 찍 긋는다.
+
+19. docutype
+<!DOCUTYPE html> -> 독타입은 대문자로
+-->이 문서는 html5로 작성된 문서로 문제 없이 렌더링 해달라는 의미이다. 저 자체가 html만은 아니고 html5이다.
+
+<head> ->메타데이터(문서의 정보)
+<body> ->컨텐츠(문서 내용)
+
+20. head태그 안에 들어가는 애들
+title ->  <title>문서의 대제목</title> :검색 최적화에 매우 중요
+title잘 쓰는 방법:키워드 단순 나열은 비추, 페이지마다 그에 맞게 약간 변형, 무엇에 관한 내용인지 센스있고 적당히 상세히 설명
+
+link -> css스타일시트 첨부할 때 보통 사용한다.
+<link rel-"stylesheet" href="" />
+*김버그 주관적으로 페이지의 닉김은 폰트가 좌우한다. spoqa han sans체 이뿜
+폰트 적용은 다시 나중에 보는걸로....font family
+
+style->김버그는 개인적으로 굉장히 싫어함
+HTML문서에서 스타일을 적용하기 위해서 사용함. 내가 생각해도 왜 굳이 여기다 적용시키려는건지 이해가 안간다.
+HTML문서에 있는 스타일 태그는 head에 작성된다. 그리고 css를 열심히 만들어도 걍 스타일 태그의 값이 모든것을 먹어버린다..
+
+script :자바스크립트를 추가할 때 넣는 태그이다.
+body에 쓰는 태그이다. <script src=""></script> src에 링크를 넣어서 자바스크립트 코드를 가져오거나
+<script>내용</script> 내용에 자바스크립트 코드를 넣을 수 있다.
+->근데 왜 script는 head에 안넣음?
+:html의 동작 원리를 보면 html,css모두 로딩은 하지만 기다리지 않고 바로 다음줄로 넘어가서 정보를 로딩해온다.
+하지만 스크립트의 경우에는 모두 불러올 때까지 기다리고 멈추게 되는데, 그렇게 하면 사용자 입장에서 로딩시간이 엄청 걸릴 수 있다.
+그래서 기본적으로 정보는 다 주고 그 다음에 스크립트를 부가적으로 불러오는 느낌이다.
+
+21. 메타 데이터 <meta>
+<meta name="메타데이터 종류" content="메타데이터 값">  -->가장 기본
+가장 중요한 것:뷰포트
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 요즘은 쓰는 기계가 다양해져서 화면 크기비가 다르기 때문에
+설정을 미리미리 잘해줘야한다. 그냥 저거 그대로..화면크기는 디바이스 크기고 100%비율로 그대로 나오게
+<meta name="author" content="김예림"> :웹페이지 만든 사람
+<meta name="keywords" content="김예림,구름강의,웹"> :웹페이지의 검색 키워드를 명시
+<meta name="description" content="웹페이지를 설명하고 싶은 내용"> :웹페이지를 설명하는 메타데이터
+
+
+

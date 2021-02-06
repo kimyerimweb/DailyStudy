@@ -1,0 +1,249 @@
+자바 스크립트 -> 동적으로 웹페이지 만들기
+
+var a=100;
+뒤에 들어오는 값에 따라서 알아서 type을 선정해줌
+
+알아내기 힘든 경우에는
+console.log(typeof  변수명);
+console.log(typeof divElement);
+------------------------------------------------------
+string
+
+var="hello"; 혹은 'hello'; 큰따옴표, 작은따옴표 상관없이 선언
+
+헷갈릴 때는 typeof도 쓰지만
+var a = 10;
+var b = '10';
+
+console.log(a.length);
+console.log(b.length); 로 a는 undefined, b는 2가 나온다.
+---------------------------------------------------------
+var obj = { };
+{ }이걸로 객체를 생성할 수 있다. (객체 리터럴)
+
+var obj = {
+	num = 10;
+}
+혹은
+
+obj.num = 10;
+obj['num'] = 20;
+
+속성값 변경은 그냥 다시 값을 넣어줌
+----------------------------------------------------
+배열(array)
+
+웹 어플리케이션 구현할 때 가장 많이 씀
+
+var arr = [ ];  <=> var obj = { }; 괄호 차이 구분
+
+arr[0] = 10;
+console.log(arr); -> [10]으로 나옴
+
+arr[1] = 20;
+console.log(arr); ->[10, 20]으로 나옴
+
+인덱스에 직접 접근하는 것보다는 내장API를 이용하길 권장
+var arr =[];
+arr.push(100); [100]
+arr.push(20); [100, 20]
+arr.splice(0,1,10); [10, 20]
+console.log(arr); [10, 20]
+
+push() : 배열에 데이터 추가(맨 끝 인덱스부터 추가됨)
+slice() : 배열의 특정 인덱스에 있는 값을 반환 (배열 내용이 변환되진 않음)
+splice() : 배열의 특정 인덱스에 있는 값을 변경 또는 삭제 -> splice(0, 1, '라면', '국수');
+0번 인덱스에 1개의 원소를 제거하고 라면과 국수라는 스트링을 삽입
+pop() : 배열의 마지막 인덱스의 값을 꺼냄(배열 내용이 변경)
+shift() : 배열의 첫번째 인덱스 값을 꺼냄(배열의 내용이 변경)
+
+------------------------------------------------------------
+반복문
+
+for문 -> 최적 성능때문에 고의로 쓰는거 말고는 안씀
+
+forEach() -> 배열에 쓰기 좋음,중간에 멈추거나 건너뛰기는 별다른거 못하면 불가능
+var arr = [10,20,30];
+arr.forEach(function(value, index) { ->fuction은 고정이고 안에 인수같은 것도 이름따라 역할이 다른듯함..)
+ console.log('array index '+ index + 'value: ' + value);
+});
+
+array -> 어레이 전체 요소
+index -> 인덱스
+element ,value -> 배열에 저장된 요소 1개
+
+for in -> 배열과 객체 모두 사용 가능
+for (var key in arr) {
+ console.log(arr[key]);
+}
+
+for (var key in obj) {
+ console.log(obj[key]);
+}
+
+이런 식으로.. key라는 변수는 위치가 고정되어 있으니까 ㄱㅊ 0에서 시작하는듯
+obj는 안에 원소들이 선언된 순서대로 key값이 부여된다.
+------------------------------------------------------------------
+연산자
+
+=== 동일한가? ==로 안쓰니까 주의하기
+
+변수 초기화에 사용 (??)
+
+function fetchData(data) {
+  var receivedData;
+  if (data === undefined) {
+    receivedData = localStorage.getItem('item');
+  }
+}
+
+function fetchData(data) {
+  var receivedData;
+  receivedData = data || localStorage.getItem('item');
+}
+
+if문 대신 삼항 연산자를 쓰면 코드를 간결하게 작성할 수 있다.
+-----------------------------------------------------------------
+function sumNumbers(a ,b){
+ return a+b;
+}
+
+-> 사용할 때는 sumNumbers(10, 30); //40
+
+함수 선언 방식
+1. 함수 표현식 -> 함수를 변수에 할당함
+
+var sumNumbers = function(a, b) {
+ return a+b;
+}
+
+이렇게 할 수 있는 이유는 일급 함수를 가질 수 있기 때문에.. first-class function
+function sayHello() {
+	return "Hello, ";
+}
+
+function greeting(helloMessage, name) {
+ console.log(hellMessage() + name);
+}
+
+greeting(sayHello, "JavaScript!");
+
+여기서 다른 함수에 인자로 전달된 함수는 콜백 함수라고 한다.
+sayHello는 콜백 함수
+
+2. 함수 선언문 -> 함수 그 자체를 선언
+
+function sumNumbers(a, b) {
+ return a + b;
+}
+
+함수를 작성할 때는 단일 책임 원칙을 지켜주는 것이 좋다.
+-->더할 때는 더하는 것만, 뺄 때는 빼는 것만
+데이터를 요청하는거 다 한꺼번에 쓰면 안된다.
+----------------------------------------------------------
+scope
+
+그냥 함수 안에서 정의된 변수는 함수 밖에서 영향을 줄 수 없다.
+이런 내용
+
+var a = 10; ->기본적으로 전역 변수로 선언
+
+function getA() {
+  var a = 20; -> 함수 내의 변수
+  console.log(a);
+}
+
+getA(); // 20
+console.log(a); // 10
+-------------------------------------------------------
+this
+
+this의 값은 함수를 호출하는 방법에 의해 결정된다.
+선언으로 달라지는 것은 클로저
+함수가 어떻게 호툴되던지간에 상관없이 묶을 수 있는 애는 bind
+
+f가 출력되면 자기 자신으로 나온다는 의미이다.
+
+호출을 누가 했냐? 호출을 직접하는 코드를 살펴보자
+var someone = {
+	name :  'codejong',
+	whoAmI : function() {
+	 console.log(this);
+}
+
+someone.whoAmI(); -> someone이 someone.whoAmI을 호출
+this = someone
+
+var myWhoAmI = someone.whoAmI;
+myWhoAmI(); ->  window(브라우저)가 myWhoAmI를 호출함
+this = someone
+
+function Developer() {
+  console.log(this);
+}
+var dev = new Developer();
+
+이것도 디벨로퍼가 나옴. 뉴로 생성하는 순간 디벨로퍼가 콘솔로그를 실행하기 때문에
+
+생성자 함수->함수를 이용해 새 인스턴스를 선언하는 함수
+function Developer() {
+  // ...
+}
+var dev = new Developer();
+-------------------------------------------------------------------
+closure -> 함수 실행이 끝난 뒤에도 함수에 선언된 변수의 값을 접근할 수 있는 js의 성질
+
+function addCounter() {
+  var counter = 0;
+}
+
+addCounter();
+console.log(counter); -> 카운터는 이제 접근 못함
+
+function addCounter() {
+  var counter = 0;
+
+  return function() {
+    return counter++;
+  };
+}
+
+console.log(addConter()); 를 하면
+
+f () {
+	return conter++;
+}
+가 반환된다.
+그리고
+console.log(counter); 를 하면 addCounter가 끝났으니까 접근을 못한다.
+하지만
+
+var add = addCounter();를 하면 
+f () {
+	return conter++;
+}
+
+가 add에 들어가고 add도 함수이기 때문에
+add(); 는 처음엔 0이지만
+add(); 1
+add(); 2
+
+이렇게 된다.
+
+함수를 반환할 수 있기 때문에 반환된 함수를 변수가 먹고
+함수가 끝난 뒤에도 함수에 선언된 변수의 값으로 접근이 가능해진다.
+
+예시
+
+function add(num1, num2) {
+ return num1+num2;
+}
+
+function curry(fn, a) {
+ return function(b) {
+	return fn(a,b);
+ };
+}
+
+var add3 = curry(add, 3);
+add3(4); // 7
