@@ -1,0 +1,82 @@
+태그 사이에 감싸진 텍스트 -> 텍스트 노드
+<p>text node<p>
+
+text node라고 써진 텍스트 노드는 p태그의 자식이다.
+
+let textnode = document.createTextnode("동적으로 추가하는 텍스트. ");
+let para = document.querySelector("p");
+
+para.appendChild(textnode);
+
+-><p>동적으로 추가하는 텍스트</p>
+
+docu.innerHTML="" vs docu.innerText="" ->성능은 HTML쪽이 더 나쁘고 보안이 취약함
+HTML은 문자열 내부에 HTML태그가 있으면 인식해서 태그로 변형해서 저장
+Text는 문자열 내부에 HTML태그 형태로 서술이 되어 있어도 텍스트로만 인식.
+
+=docu.innerHTML vs =docu.outerHTML
+inner는 불러오려는 태그 내부에 있는 text만 반환하고
+outer는 불러오려는 태그를 포함해서 전체를 반환함. 부모까지는 아니고 자신과 자식,자손까지 모두 반환
+그리고 inner나 outer나 중복되는건 첫번째만 불러오는 것처럼 보이는데, 애초에 쿼리 셀렉터로 불러온 애라 그런것,,
+아무튼 outer는 <div><div>...으로 중복되면 맨 윗 조상 <div>부터 출력한다.
+
+textContent vs innerText
+둘다 자손까지 모든 텍스트값을 반환하지만
+textContent는 html문서에서 태그 부분만 삭제해서 들여쓰기,띄어쓰기 모든 부분을 다 그대로 보여줌(raw한 text)
+innerText는 스타일,자바스크립트로 만진 결과를 반환해서 보여줌
+ <div>
+      TEST1
+      <span class="lala"
+        >TEST2 테스트중
+        <p>룰루루ㅏ라랄</p>
+      </span>
+    </div>
+
+innerText -> TEST1 TEST2 테스트중
+	     룰루루ㅏ라랄
+
+textContent -> TEST1
+	        TEST2 테스트중
+		룰루루ㅏ라랄
+
+성능과 보안면에서 textContent가 좋아서 가급적 textContent를 쓰는 것을 추천한다.
+innerText는 특별히 스타일 적용을 하지 않고 텍스트 원문만 넣어야하는 상황에서 적합하지 않다.
+하지만 IE8이하 환경에서는 textContent대신 사용한다.
+
+nodeValue -> 태그 안에 저장된 text값이라고 생각하면 쉽다.
+대신 태그 내에 저장된 text node는 태그의 자식이기때문에
+document.querySelector("p").firstChild.nodeValue;
+이런 식으로 자식으로 내려가서 nodeValue를 가져와줘야한다.
+
+createTextNode, textContent innerHTML innerText nodeValue
+모두 같은 기능을 할 수 있는데,
+태그 안에 텍스트를 넣는다면 nodeValue의 성능이 가장 좋고 많이씀
+만약 IE 하위버전까지 포함한다면 textContent, IE만 생각하면 innerText,
+innerHTML이나 createTextNode는 배제하는 것이 좋다.
+
+createElement vs innerHTML
+->innerHTML은 그냥 W3C에서 쓰지 말라함..
+-----------------------------------------------------------------------------
+javascript의 입장에서는 html은 문자열이다.
+DOM -> html을 자바스크립트가 이해할 수 있는 객체 모델로 만든 것.
+
+parse -> Node로 바꿈
+node는 추상적임..
+
+띄어쓰기, 들여쓰기 공백은 text node이다.
+
+2장의 documnet element -> document.어쩌구 할 때 그 document이다.
+3장 element = tag
+3.2절 중요함.
+
+함수 이름을 보고 어떤 단어를 쓰는지 함 본다.
+지정하고 싶다 = set
+가져오고 싶다 = get
+삭제하고 싶다 = remove
+
+조작,이벤트 핸들링 두개가 가장 중요하다.
+우리가 알아야 하는 것은 태그마다 발생하는 이벤트.
+
+classList.add 넣으려는 클래스 이름이 같은게 이미 존재하면 중복으로 넣지 않음.
+
+-->11장 공부해오기
